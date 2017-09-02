@@ -12,10 +12,11 @@ const HomeController = {
   },
 
   out: function(req, res){
-    res.redirect('login');
-  // req.session.destroy(function(){
-  //   res.redirect('/login');
-  //   });
+    // res.redirect('login');
+  req.session.destroy(function(){
+    res.redirect('/login');
+    // console.log('USER LOGGED OUT');
+    });
   },
 
 
