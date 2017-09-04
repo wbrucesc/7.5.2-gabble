@@ -2,8 +2,6 @@ const models = require('../models');
 
 const HomeController = {
   index: function(req, res){
-    // console.log("USER ID", models.User.id);
-    // console.log("CURRENT USERNAME", models.User.username);
     models.Gab.findAll().then(function(results){
       res.render('home', {Gab: results});
       console.log(results);

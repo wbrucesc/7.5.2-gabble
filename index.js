@@ -2,6 +2,7 @@ const models = require('./models');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const bCrypt = require('bcrypt-nodejs');
 const moment = require('moment');
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
@@ -19,8 +20,9 @@ app.use('/static', express.static('public'));
 
 //Passport user auth
 
-const checkPassword = function(user, password){
-  return user.password === password;
+const checkPassword = function(userpass, password){
+  // return user.password === password;
+  return bCrypt.compareSync(password, userpass);
 };
 
 passport.use('local-login', new LocalStrategy(function(username, password, done){
@@ -31,7 +33,8 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
   }).then(function(user){
     if(user === null) {
       done(null, false);       //false means no user
-    } else if (user && checkPassword(user, password)) {
+    } else if (user && checkPassword(user.password, password)) {
+      console.log(user.password, password);
       done(null, user);
     } else {
       done(null, false);        //there is a user but their password is not correct
@@ -40,41 +43,70 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
 }));
 
 
-//Not working
-passport.use('local-signup', new LocalStrategy(function(username, password, done){
-  console.log('HERE!!!');
-  models.User.create({
-    where: {
-      username: req.body.newUsername,
-      password: req.body.newpw
+passport.use('local-signup', new LocalStrategy({
+  passReqToCallback: true
+  },
+    function(req, username, password, done){
+      var generateHash = function(password) {
+      return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+    };
+      models.User.findOne({
+        where: {
+          username: username
+        }
+      }).then(function(user){
+        if(user){
+          console.log("If firing");
+          return done(null, false, {
+            message: 'that username is taken'
+          });
+        } else {
+          console.log("Else firing");
+          let userPassword = generateHash(password);
+          let data = {
+            username: username,
+            password: userPassword
+          };
+          models.User.create(data).then(function(newUser, created){
+            console.log("CREATE WORKING");
+            if (!newUser){
+              return done(null, false);
+            }
+            if(newUser){
+              return done(null, newUser);
+            }
+          });
+        }
+      });
     }
-  }).then(function(user){
-    console.log("New User:", user);
-    // if (user){
-    //   return done(null, user);
-    // } else {
-    //   return done(null, false);
-    // }
-  });
-}));
+));
 
-// passport.use('local-signup', new LocalStrategy(
-//   function(username, password, done){
-//     console.log('local signup is running');
-//     User.signup(username, password, function(err, user){
-//       if (err) {
-//           return done(err);
-//       }
-//       if (user) {
-//           return done(null, user);
-//       } else {
-//           return done(null, false, {
-//               message: "There is already a user with that username."
-//           });
-//       }
-//     });
-//   }
-// ));
+
+
+
+
+
+
+
+
+// passport.use('local-signup', new LocalStrategy(function(username, password, done){
+//   console.log('LOCAL SIGNUP IS RUNNING');
+//   models.User.create({
+//
+//       username: "newUsername",
+//       password: "newpw"
+//
+//   }).then(function(user){
+//     console.log("New User:", user);
+//     if (user){
+//       return done(null, user);
+//     } else {
+//       return done(null, false);
+//     }
+//   });
+// }));
+
+
 
 
 passport.serializeUser(function(user, done){        //stores user.id onto the session

@@ -23,7 +23,7 @@ homeRouter.use(requireLogin);
 homeRouter.get('/', HomeController.index);
 homeRouter.get('/logout', HomeController.out);
 homeRouter.get('/add', HomeController.form);
-homeRouter.post('/add', HomeController.add); 
+homeRouter.post('/add', HomeController.add);
 
 
 userRouter.get('/login', UserController.login);   //user prepended to / on all user routes
@@ -36,7 +36,7 @@ userRouter.post('/login', passport.authenticate('local-login', {
 userRouter.get('/signup', UserController.signup);
 userRouter.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/',
-  failureRedirect: '/signup',
+  failureRedirect: '/signup'
   // failureFlash: true
 }));
 
