@@ -2,6 +2,7 @@ const models = require('./models');
 const express = require('express');
 const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   session = require('express-session');
@@ -38,19 +39,22 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
   });
 }));
 
+
+//Not working
 passport.use('local-signup', new LocalStrategy(function(username, password, done){
-  console.log("CREATING USER!!!");
+  console.log('HERE!!!');
   models.User.create({
     where: {
-      username: newUsername,
-      password: newpw
+      username: req.body.newUsername,
+      password: req.body.newpw
     }
   }).then(function(user){
-    if (user){
-      done(null, user);
-    } else {
-      done(null, false);
-    }
+    console.log("New User:", user);
+    // if (user){
+    //   return done(null, user);
+    // } else {
+    //   return done(null, false);
+    // }
   });
 }));
 

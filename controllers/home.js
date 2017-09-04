@@ -1,6 +1,13 @@
+const models = require('../models');
+
 const HomeController = {
   index: function(req, res){
-    res.render('home');
+    // console.log("USER ID", models.User.id);
+    // console.log("CURRENT USERNAME", models.User.username);
+    models.Gab.findAll().then(function(results){
+      res.render('home', {Gab: results});
+      console.log(results);
+    });
   },
 
   form: function(req, res){
@@ -8,7 +15,12 @@ const HomeController = {
   },
 
   add: function(req, res){
-
+    models.Gab.create({
+      author: req.session.user,
+      body: req.body.newGab,
+    }).then(function(result){
+      res.redirect('/');
+    });
   },
 
   out: function(req, res){

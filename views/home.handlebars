@@ -6,3 +6,16 @@
   <a class="button" href="/login">Log in</a>
   <a class="button" href="/logout">Log out</a>
 </div>
+
+<!-- var createdAt = moment.(createdAt).format('MMMM Do YYYY, h:mm:ss a'); -->
+
+<div class="container gab-container">                                                <!--adjust width-->
+  {{#each Gab}}
+  <div class="row gab-row">
+    <h4>{{author}}: {{body}}</h4>
+    <h5>{{createdAt}}</h5>
+    <h6>Likes</h6>
+  <button class="button" type="submit" name="button">Like</button>      <!--float: right-->
+  </div>
+  {{/each}}
+</div>
