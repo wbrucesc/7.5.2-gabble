@@ -1,7 +1,36 @@
+.body {
+  background-color: #f9f9f9;
+}
+
+.banner {
+  text-align: center;
+  background-color: #5cb85c;
+  color: #fff;
+}
+
 .gab-row {
   border: 1px solid #BBB;
   border-radius: 5px;
-  width: fit-content;
+  max-width: 50%;
   padding: 10px;
   margin-bottom: 20px;
+}
+
+.auth {
+  border: 1px solid #BBB;
+  color: #fff;
+  background-color: #5cb85c;
+  border-radius: 5px;
+  padding: 1px 3px;
+  width: fit-content;
+}
+
+#like-button, #create-button {
+  color: #fff;
+  background-color: #428bca;
+}
+
+.button {
+  color: #fff;
+  background-color: #428bca;
 }

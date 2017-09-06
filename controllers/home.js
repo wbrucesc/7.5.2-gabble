@@ -2,9 +2,8 @@ const models = require('../models');
 
 const HomeController = {
   index: function(req, res){
-    models.Gab.findAll().then(function(results){
+    models.Gab.findAll({order:[['createdAt', 'DESC']]}).then(function(results){
       res.render('home', {Gab: results});
-      console.log(results);
     });
   },
 

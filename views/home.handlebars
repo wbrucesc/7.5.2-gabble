@@ -1,4 +1,4 @@
-<h1>Gabble</h1>
+<h1 class="banner">Gabble</h1>
 
 <div class="row">
   <a class="button" href="#">Home</a>
@@ -12,10 +12,11 @@
 <div class="container gab-container">                                                <!--adjust width-->
   {{#each Gab}}
   <div class="row gab-row">
-    <h4>{{author}}: {{body}}</h4>
-    <h5>{{createdAt}}</h5>
+    <h4 class="auth">{{author}}</h4>
+    <h5>{{body}}</h5>
+    <h6>{{createdAt}}</h6>
     <h6>Likes</h6>
-  <button class="button" type="submit" name="button">Like</button>      <!--float: right-->
+  <button id="like-button" class="button" type="submit" name="button">Like</button>      <!--float: right-->
   </div>
   {{/each}}
 </div>
