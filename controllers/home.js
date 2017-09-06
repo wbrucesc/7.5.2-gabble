@@ -14,8 +14,9 @@ const HomeController = {
 
   add: function(req, res){
     models.Gab.create({
-      author: req.session.user,
+      author: req.user.username,
       body: req.body.newGab,
+      userId: req.user.id
     }).then(function(result){
       res.redirect('/');
     });

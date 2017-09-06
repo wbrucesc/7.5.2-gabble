@@ -4,5 +4,9 @@ module.exports = function(sequelize, DataTypes) {
     author: DataTypes.STRING,
     body: DataTypes.TEXT
   });
+  // Gab.associate = function(models){
+  //   Gab.belongsTo(models.User, {foreignKey: 'userId'});
+  // };
+
   return Gab;
 };
