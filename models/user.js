@@ -6,6 +6,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   User.associate = function(models){
     User.hasMany(models.Gab, {foreignKey: 'userId'});
+    User.hasMany(models.Like, {foreignKey: 'user'});
   };
   return User;
 };

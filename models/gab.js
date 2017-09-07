@@ -14,6 +14,7 @@ module.exports = function(sequelize, DataTypes) {
   });
   Gab.associate = function(models){
     Gab.belongsTo(models.User, {foreignKey: 'userId'});
+    Gab.hasMany(models.Like, {foreignKey: 'post'});
   };
   return Gab;
 };

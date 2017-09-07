@@ -32,9 +32,8 @@ passport.use('local-login', new LocalStrategy(function(username, password, done)
     }
   }).then(function(user){
     if(user === null) {
-      done(null, false);       //false means no user
+      done(null, false);        //false means no user
     } else if (user && checkPassword(user.password, password)) {
-      console.log(user.password, password);
       done(null, user);
     } else {
       done(null, false);        //there is a user but their password is not correct
