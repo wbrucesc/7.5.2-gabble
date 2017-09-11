@@ -24,6 +24,7 @@ homeRouter.get('/', HomeController.index);
 homeRouter.get('/logout', HomeController.out);
 homeRouter.get('/add', HomeController.form);
 homeRouter.post('/add', HomeController.add);
+homeRouter.get('/delete/:id', HomeController.delete);
 
 
 userRouter.get('/login', UserController.login);   //user prepended to / on all user routes

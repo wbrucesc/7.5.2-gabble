@@ -20,6 +20,22 @@ const HomeController = {
       res.redirect('/');
     });
   },
+  delete: function(req, res){
+    models.Gab.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(){
+      res.redirect('/');
+  });
+
+  //   const id = req.params.id;
+  //   models.Gab.findById(id).then(function(gab){
+  //     if (gab.userId === req.user.id){
+  //       gab.destroy()
+  //     }
+  //   });
+  },
 
   out: function(req, res){
     // res.redirect('login');
@@ -28,7 +44,14 @@ const HomeController = {
     // console.log('USER LOGGED OUT');
     });
   },
-
+  // like: function(req, res){
+  //   models.Like.create({
+  //     user: req.user.id,
+  //     post: req.params.id
+  //   }).then(function(like){
+  //       res.redirect('/');
+  //   });
+  // },
 
 
 
