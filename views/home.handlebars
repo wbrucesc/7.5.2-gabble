@@ -1,23 +1,26 @@
 <h1 class="banner">Gabble</h1>
 
-<div class="row">
-  <a class="button" href="#">Home</a>
-  <a class="button" href="/add">Create a new gab</a>
-  <a class="button" href="/login">Log in</a>
-  <a class="button" href="/logout">Log out</a>
+<div class="container">
+  <div class="row link-row">
+    <a class="button" href="#">Home</a>
+    <a class="button" href="/add">Create a new gab</a>
+    <a class="button" href="/login">Log in</a>
+    <a class="button" href="/logout">Log out</a>
+  </div>
 </div>
+
 
 <!-- var createdAt = moment.(createdAt).format('MMMM Do YYYY, h:mm:ss a'); -->
 
-<div class="container gab-container">                                                <!--adjust width-->
+<div class="container gab-container">
   {{#each Gab}}
   <div class="row gab-row">
-    <h4 class="auth">{{author}}</h4>
-    <h5>{{body}}</h5>
+    <h4 class="auth">@{{author}}:</h4>
+    <h5>"{{body}}"</h5>
     <h6>{{createdAt}}</h6>
-    <h6>Likes</h6>
+    <h6><a class="like-link" href="/showLikes/{{id}}">Likes: {{Likes.length}}</a></h6>
     <a class="button" href="/delete/{{id}}">DELETE</a>
-  <button class="button" type="submit" name="button">Like</button>      <!--float: right-->
+    <a class="button" href="/like/{{id}}">Like</a>      <!--float: right-->
   </div>
   {{/each}}
 </div>

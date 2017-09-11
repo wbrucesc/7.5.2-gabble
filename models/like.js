@@ -5,23 +5,26 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "Gab",
+        model: "Gabs",
         key: 'id'
       }
     },
     user: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: "User",
+        model: "Users",
         key: "id"
       }
+    },
+    isLiked: {
+      type: DataTypes.BOOLEAN
     }
   });
 
   Like.associate = function(models){
     Like.belongsTo(models.Gab, {foreignKey: 'gab'});
-    Like.belongsTo(models.User, {foreignKey: 'user'});
+    Like.belongsTo(models.User, {foreignKey: 'user', as: 'fan'});
   };
   return Like;
 };

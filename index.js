@@ -7,7 +7,7 @@ const moment = require('moment');
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   session = require('express-session');
-  // flash = require('express-flash-messages');
+  flash = require('express-flash-messages'); //not working 
 
 const routes = require('./routes');
 
@@ -81,33 +81,6 @@ passport.use('local-signup', new LocalStrategy({
 ));
 
 
-
-
-
-
-
-
-
-// passport.use('local-signup', new LocalStrategy(function(username, password, done){
-//   console.log('LOCAL SIGNUP IS RUNNING');
-//   models.User.create({
-//
-//       username: "newUsername",
-//       password: "newpw"
-//
-//   }).then(function(user){
-//     console.log("New User:", user);
-//     if (user){
-//       return done(null, user);
-//     } else {
-//       return done(null, false);
-//     }
-//   });
-// }));
-
-
-
-
 passport.serializeUser(function(user, done){        //stores user.id onto the session
   done(null, user.id);
 });
@@ -132,6 +105,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 
 routes(app);

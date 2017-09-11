@@ -1,0 +1,16 @@
+<div id="liked-gab" class="container">
+  <div class="row">
+    <h4 class="auth">{{gab.author}}</h4>
+
+    <h5>"{{gab.body}}"</h5>
+
+    <h6>Liked by:</h6>
+    {{#each gab.Likes}}
+      <li class="fan-list">@{{fan.username}}</li>
+    {{/each}}
+
+    <div id="home-button" class="container">
+      <a class="button" href="/">Home</a>
+    </div>
+  </div>
+</div>

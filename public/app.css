@@ -1,5 +1,5 @@
-.body {
-  background-color: #f9f9f9;
+body {
+  background-color: #999;
 }
 
 .banner {
@@ -9,21 +9,31 @@
   padding: 20px;
 }
 
-.gab-row {
-  border: 1px solid #BBB;
+.link-row {
+  max-width: 55%;
+  margin: 0 auto;
+}
+
+.gab-row, #liked-gab {
+  border: 1px solid #333;
   border-radius: 5px;
   max-width: 50%;
   padding: 10px;
-  margin-bottom: 20px;
+  margin: 0 auto 20px auto;
+  background-color: #fff5ee;
 }
 
 .auth {
-  border: 1px solid #BBB;
+  border: 1px solid #777;
   color: #fff;
   background-color: #5cb85c;
   border-radius: 5px;
   padding: 1px 3px;
   width: fit-content;
+}
+
+.like-link {
+  text-decoration: none;
 }
 
 #like-button, #create-button {
@@ -34,4 +44,16 @@
 .button {
   color: #fff;
   background-color: #428bca;
+}
+
+#home-button {
+  max-width: 7%;
+}
+
+#liked-gab {
+  margin-top: 75px;
+}
+
+.fan-list {
+  list-style: none;
 }

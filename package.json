@@ -16,6 +16,7 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
+    "express-flash-messages": "^0.1.1",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.15.5",
     "moment": "^2.18.1",
