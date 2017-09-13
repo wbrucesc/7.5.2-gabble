@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run migrate && node index.js",
-    "migrate": "./node_modules/sequelize-cli/bin/sequelize db:migrate",
+    "migrate": "./node_modules/sequelize-cli/lib/sequelize db:migrate",
     "test": "jest",
     "local": "nodemon index.js"
   },
