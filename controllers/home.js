@@ -30,13 +30,19 @@ const HomeController = {
     });
   },
   delete: function(req, res) {
-    models.Gab.destroy({
+    models.Like.destroy({
       where: {
-        id: req.params.id,
-        userId: req.user.id
+        gab: req.params.id
       }
-    }).then(function() {
-      res.redirect('/');
+    }).then(function(){
+      models.Gab.destroy({
+        where: {
+          id: req.params.id,
+          userId: req.user.id
+        }
+      }).then(function() {
+        res.redirect('/');
+      });
     });
   },
   newLike: function(req, res){
