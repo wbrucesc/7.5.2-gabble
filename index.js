@@ -7,7 +7,7 @@ const moment = require('moment');
 const passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   session = require('express-session');
-  flash = require('express-flash-messages'); //not working 
+  flash = require('express-flash-messages'); //not working
 
 const routes = require('./routes');
 
@@ -110,6 +110,6 @@ app.use(flash());
 
 routes(app);
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 module.exports = app;
